@@ -1,6 +1,6 @@
 import {postContacts,patchContacts,deleteContacts} from '../../../Apis/contact/contactApi.js';
-import ContactModel from '../../../Models/contactModel.js';
-export class RegContacto extends HTMLElement {
+import ContactModel from '../../../Models/countrieModel.js';
+export class Regcountrie extends HTMLElement {
   constructor() {
     super();
     this.render();
@@ -14,37 +14,20 @@ export class RegContacto extends HTMLElement {
   render() {
     this.innerHTML = /* html */ `
       <style rel="stylesheet">
-        @import "./App/Components/contacto/contactoStyle.css";
+        @import "./App/Components/countrie/countrieStyle.css";
       </style>
         <div class="card mt-3">
             <div class="card-header">
-                Registro de Contactos <span class="badge rounded-pill text-bg-primary" id="idView"></span>
+                Registro de paises <span class="badge rounded-pill text-bg-primary" id="idView"></span>
             </div>
             <div class="card-body">
-                <form id="frmDataContacto">
+                <form id="frmDatacountrie">
                     <div class="row">
                         <div class="col">
-                            <label for="nombreContacto" class="form-label">Nombre Contacto</label>
-                            <input type="text" class="form-control" id="nombreContacto" name ="nombreContacto">
+                            <label for="nombrecountrie" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="nombrecountrie" name ="nombrecountrie">
                         </div>
-                        <div class="col">
-                            <label for="apellidoContacto" class="form-label">Apellidos Contacto</label>
-                            <input type="text" class="form-control" id="apellidoContacto" name="apellidoContacto">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="nroCelular" class="form-label">Nro Celular</label>
-                            <input type="text" class="form-control" id="nroCelular" name ="nroCelular">
-                        </div>
-                        <div class="col">
-                            <label for="emailContacto" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="emailContacto" name="emailContacto">
-                        </div>
-                        <div class="col">
-                            <label for="nroResidencia" class="form-label">Nro Residencia</label>
-                            <input type="text" class="form-control" id="nroResidencia" name="nroResidencia">
-                        </div>
+
                     </div>
                     <div class="row mt-3">
                         <div class="col">
@@ -76,7 +59,7 @@ resetIdView =() =>{
     const idView = document.querySelector('#idView');
     idView.innerHTML = '';   
 }
-eventoEditar =() =>{
+eventoEditar =() =>{countries
     document.querySelector('#btnEditar').addEventListener("click",(e) =>{
         this.editData();
         e.stopImmediatePropagation();
@@ -107,7 +90,7 @@ enabledBtns =() =>{
     })
 }
 editData = () =>{
-    const frmRegistro = document.querySelector('#frmDataContacto');
+    const frmRegistro = document.querySelector('#frmDatacountrie');
     const datos = Object.fromEntries(new FormData(frmRegistro).entries());
     const idView = document.querySelector('#idView');
     let id = idView.textContent;
@@ -155,7 +138,7 @@ delData = () =>{
     });   
 }
 saveData = () =>{
-        const frmRegistro = document.querySelector('#frmDataContacto');
+        const frmRegistro = document.querySelector('#frmDatacountrie');
         document.querySelector('#btnGuardar').addEventListener("click",(e) =>{
             const datos = Object.fromEntries(new FormData(frmRegistro).entries());
             postContacts(datos)
@@ -187,13 +170,13 @@ viewData = (id)=>{
 }
 disableFrm = (estado) =>{
     let frm={
-        nombreContacto: '', 
-        apellidoContacto: '', 
+        nombrecountrie: '', 
+        apellidocountrie: '', 
         nroCelular: '', 
-        emailContacto: '', 
+        emailcountrie: '', 
         nroResidencia: ''
     }
-        const frmRegistro = document.querySelector('#frmDataContacto');
+        const frmRegistro = document.querySelector('#frmDatacountrie');
         let myFrm = new FormData();
         Object.entries(ContactModel).forEach(([key, value]) => myFrm.append(key, value));
         myFrm.forEach((value, key) => {
@@ -202,4 +185,4 @@ disableFrm = (estado) =>{
         })
     }
 }
-customElements.define("reg-contacto", RegContacto);
+customElements.define("reg-countrie", Regcountrie);

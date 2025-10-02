@@ -17,13 +17,22 @@ export class NavMenu extends HTMLElement{
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" data-verocultar='["c"]'>Contactos</a>
+                    <a class="nav-link active" aria-current="page" href="#" data-verocultar='["countries"]'>Countries</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#" data-verocultar='["ct"]'>Citas contactos</a>
+                    <a class="nav-link" href="#" data-verocultar='["preguntar"]'>preguntar</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="#" data-verocultar='["regions"]'>Regions</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" data-verocultar='["cities"]'>Cities</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" data-verocultar='["companies"]'>Companies</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" data-verocultar='["branches"]'>Branches</a>
                   </li>
                 </ul>
               </div>
@@ -34,16 +43,36 @@ export class NavMenu extends HTMLElement{
           val.addEventListener("click", (e)=>{
               let data = JSON.parse(e.target.dataset.verocultar);
               let mainContent = document.querySelector('#mainContent');
-              mainContent.innerHTML= "";
+              mainContent.innerHTML = "";
+              
               switch (data[0]){
-                case 'c':
-                  mainContent.innerHTML="<contacto-component></contacto-component>";
+                case 'countries':
+                  mainContent.innerHTML = "<countrie-component></countrie-component>";
                   break;
+                case 'regions':
+                  mainContent.innerHTML = "<regions-component></regions-component>";
+                  break;
+                case 'cities':
+                  mainContent.innerHTML = "<cities-component></cities-component>";
+                  break;
+                case 'companies':
+                  mainContent.innerHTML = "<companies-component></companies-component>";
+                  break;
+                case 'branches':
+                  mainContent.innerHTML = "<branches-component></branches-component>";
+                  break;
+                case 'preguntar':
+                  // Agrega aquí el componente que corresponda a "preguntar"
+                  mainContent.innerHTML = "<preguntar-component></preguntar-component>";
+                  break;
+                default:
+                  console.log("Componente no encontrado");
               }
+              
               e.stopImmediatePropagation();
               e.preventDefault();
           })
       });
     }
 }
-customElements.define("nav-menu",NavMenu);
+customElements.define("nav-menu", NavMenu);

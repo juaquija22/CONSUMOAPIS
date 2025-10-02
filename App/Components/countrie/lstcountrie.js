@@ -1,4 +1,4 @@
-export class LstContacto extends HTMLElement {
+export class Lstcountrie extends HTMLElement {
   constructor() {
     super();
     this.render();
@@ -7,7 +7,7 @@ export class LstContacto extends HTMLElement {
   render() {
     this.innerHTML = /* html */ `
       <style rel="stylesheet">
-        @import "./App/Components/contacto/contactoStyle.css";
+        @import "./App/Components/countrie/countrieStyle.css";
       </style>
         <div class="card mt-3">
             <div class="card-header">
@@ -24,4 +24,4 @@ export class LstContacto extends HTMLElement {
   }
 }
 
-customElements.define("lst-contacto", LstContacto);
+customElements.define("lst-countrie", Lstcountrie);
