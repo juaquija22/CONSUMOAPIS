@@ -1,15 +1,10 @@
 {
-  "countries": [
-    {
-      "id": "aba1",
-      "name": "colombia"
-    }
-  ],
+  "countries": [],
   "regions": [
     {
       "id": "324d",
       "name": "santander",
-      "countryId": "aba1"
+      "countryId": null
     }
   ],
   "cities": [

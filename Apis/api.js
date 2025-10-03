@@ -1,80 +1,57 @@
+/**
+ * URL base para la API del servidor JSON
+ */
 const API_BASE_URL = 'http://localhost:3000';
 
 /**
- * Cliente API genérico para todas las entidades
+ * Función genérica para hacer peticiones HTTP
+ * @param {string} endpoint - Endpoint de la API
+ * @param {string} method - Método HTTP (GET, POST, PUT, DELETE)
+ * @param {Object|null} data - Datos a enviar
+ */
+async function apiRequest(endpoint, method = 'GET', data = null) {
+    const config = {
+        method,
+        headers: { 'Content-Type': 'application/json' }
+    };
+    
+    if (data) config.body = JSON.stringify(data);
+    
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+    
+    if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+    
+    return method === 'DELETE' ? true : await response.json();
+}
+
+/**
+ * Cliente API simplificado para una entidad específica
  */
 class ApiClient {
     constructor(entity) {
         this.entity = entity;
     }
     
-    /**
-     * Obtener todos los registros
-     */
     async getAll() {
-        return await this.makeRequest(`/${this.entity}`);
+        return await apiRequest(`/${this.entity}`);
     }
     
-    /**
-     * Obtener un registro por ID
-     */
     async getById(id) {
-        return await this.makeRequest(`/${this.entity}/${id}`);
+        return await apiRequest(`/${this.entity}/${id}`);
     }
     
-    /**
-     * Crear un nuevo registro
-     */
     async create(data) {
-        return await this.makeRequest(`/${this.entity}`, 'POST', data);
+        return await apiRequest(`/${this.entity}`, 'POST', data);
     }
     
-    /**
-     * Actualizar un registro existente
-     */
     async update(id, data) {
-        return await this.makeRequest(`/${this.entity}/${id}`, 'PUT', data);
+        return await apiRequest(`/${this.entity}/${id}`, 'PUT', data);
     }
     
-    /**
-     * Eliminar un registro
-     */
     async delete(id) {
-        return await this.makeRequest(`/${this.entity}/${id}`, 'DELETE');
-    }
-    
-    /**
-     * Método base para realizar peticiones HTTP
-     */
-    async makeRequest(endpoint, method = 'GET', data = null) {
-        try {
-            const config = {
-                method,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-            
-            if (data) {
-                config.body = JSON.stringify(data);
-            }
-            
-            const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-            
-            if (!response.ok) {
-                throw new Error(`Error ${response.status}: ${response.statusText}`);
-            }
-            
-            // Para DELETE, retornar true en lugar de JSON
-            if (method === 'DELETE') {
-                return true;
-            }
-            
-            return await response.json();
-        } catch (error) {
-            console.error(`Error en ${method} ${endpoint}:`, error);
-            throw error;
-        }
+        return await apiRequest(`/${this.entity}/${id}`, 'DELETE');
     }
 }
 

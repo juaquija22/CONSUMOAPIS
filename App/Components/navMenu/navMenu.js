@@ -1,8 +1,21 @@
+/**
+ * Componente de navegación principal de la aplicación
+ * Maneja la navegación entre diferentes secciones del sistema
+ */
 export class NavMenu extends HTMLElement{
+    /**
+     * Constructor del componente de navegación
+     * Inicializa el componente y renderiza el menú
+     */
     constructor(){
         super();
         this.render();
     }
+    
+    /**
+     * Renderiza el menú de navegación con todos los enlaces
+     * Configura los event listeners para cada enlace del menú
+     */
     render(){
         this.innerHTML = /* html */ `
           <nav class="navbar">
@@ -15,12 +28,16 @@ export class NavMenu extends HTMLElement{
             </ul>
           </nav>        
         `;
+        
+        // Configurar event listeners para cada enlace del menú
         this.querySelectorAll(".nav-link").forEach((val, id) => {
           val.addEventListener("click", (e)=>{
+              // Obtener el tipo de componente a cargar desde el atributo data
               let data = JSON.parse(e.target.dataset.verocultar);
               let mainContent = document.querySelector('#mainContent');
               mainContent.innerHTML = "";
               
+              // Cargar el componente correspondiente según la sección seleccionada
               switch (data[0]){
                 case 'countries':
                   mainContent.innerHTML = "<countrie-component></countrie-component>";
@@ -41,6 +58,7 @@ export class NavMenu extends HTMLElement{
                   console.log("Componente no encontrado");
               }
               
+              // Prevenir el comportamiento por defecto del enlace
               e.stopImmediatePropagation();
               e.preventDefault();
           })
