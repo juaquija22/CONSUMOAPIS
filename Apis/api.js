@@ -10,20 +10,44 @@ const API_BASE_URL = 'http://localhost:3000';
  * @param {Object|null} data - Datos a enviar
  */
 async function apiRequest(endpoint, method = 'GET', data = null) {
-    const config = {
-        method,
-        headers: { 'Content-Type': 'application/json' }
-    };
-    
-    if (data) config.body = JSON.stringify(data);
-    
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-    
-    if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
+    try {
+        const config = {
+            method,
+            headers: { 'Content-Type': 'application/json' }
+        };
+        
+        if (data) config.body = JSON.stringify(data);
+        
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+        
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+        
+        return method === 'DELETE' ? true : await response.json();
+    } catch (error) {
+        // Mostrar mensaje de error amigable
+        console.error(`❌ Error en petición ${method} ${endpoint}:`, error);
+        
+        // Determinar el mensaje según el tipo de error
+        let mensaje = 'Error de conexión';
+        
+        if (error.message.includes('Failed to fetch')) {
+            mensaje = '🚫 No se puede conectar al servidor. Verifica que JSON Server esté ejecutándose.';
+        } else if (error.message.includes('404')) {
+            mensaje = '📄 Recurso no encontrado';
+        } else if (error.message.includes('500')) {
+            mensaje = '⚠️ Error interno del servidor';
+        } else if (error.message.includes('400')) {
+            mensaje = '❌ Datos inválidos enviados';
+        }
+        
+        // Mostrar alerta al usuario
+        alert(`Error de API: ${mensaje}`);
+        
+        // Re-lanzar el error para que lo manejen los componentes
+        throw error;
     }
-    
-    return method === 'DELETE' ? true : await response.json();
 }
 
 /**
