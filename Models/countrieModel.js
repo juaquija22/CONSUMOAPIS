@@ -1,5 +1,6 @@
 const countryModel = {
-    nombrecountrie: '',
-
+    id: null,
+    name: ''
 }
+
 export default countryModel;

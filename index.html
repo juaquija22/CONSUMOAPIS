@@ -3,10 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <script defer src="js/bootstrap/bootstrap.bundle.js"></script>
-    <script defer type="module" src="app.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Importar todos los componentes directamente -->
+    <script type="module" src="App/Components/navMenu/navMenu.js"></script>
+    <script type="module" src="App/Components/countrie/countrieComponent.js"></script>
+    <script type="module" src="App/Components/regions/regionsComponents.js"></script>
+    <script type="module" src="App/Components/cities/citiesComponentes.js"></script>
+    <script type="module" src="App/Components/companies/companiesComponents.js"></script>
+    <script type="module" src="App/Components/branches/branchesComponentes.js"></script>
+    
+    <!-- Importar subcomponentes -->
+    <script type="module" src="App/Components/countrie/regcountrie.js"></script>
+    <script type="module" src="App/Components/countrie/lstcountrie.js"></script>
+    <script type="module" src="App/Components/regions/regRegions.js"></script>
+    <script type="module" src="App/Components/regions/lstRegions.js"></script>
+    <script type="module" src="App/Components/cities/regCities.js"></script>
+    <script type="module" src="App/Components/cities/istCities.js"></script>
+    <script type="module" src="App/Components/companies/regcompanies.js"></script>
+    <script type="module" src="App/Components/companies/lstcompanies.js"></script>
+    <script type="module" src="App/Components/branches/regBranches.js"></script>
+    <script type="module" src="App/Components/branches/istBranches.js"></script>
+    
+    <!-- Script de inicialización -->
+    <script type="module">
+        // Esperar a que se carguen todos los componentes
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Aplicación cargada correctamente');
+            
+            // El letrero ya está en el HTML, no necesitamos cargar nada por defecto
+        });
+    </script>
+    
+    <title>Gestor de Empresas</title>
 </head>
 <body>
     <div class="container">
@@ -14,6 +43,12 @@
     </div>
     <main>
         <div class="container mt-3" id="mainContent">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>🏢 Gestor de Compañías</h1>
+                    <p>Selecciona una opción del menú para comenzar</p>
+                </div>
+            </div>
         </div>
     </main>
 </body>

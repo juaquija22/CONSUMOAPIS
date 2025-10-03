@@ -1,0 +1,39 @@
+{
+  "countries": [
+    {
+      "id": "aba1",
+      "name": "colombia"
+    }
+  ],
+  "regions": [
+    {
+      "id": "324d",
+      "name": "santander",
+      "countryId": "aba1"
+    }
+  ],
+  "cities": [
+    {
+      "id": "014e",
+      "name": "bucaramanga",
+      "regionId": "324d"
+    }
+  ],
+  "companies": [
+    {
+      "id": "0762",
+      "name": "gran broaster",
+      "address": "sadsd",
+      "email": "asdawsd",
+      "cityId": "014e"
+    },
+    {
+      "id": "9208",
+      "name": "dfgred",
+      "address": "fgdg",
+      "email": "dfgdfg",
+      "cityId": "014e"
+    }
+  ],
+  "branches": []
+}

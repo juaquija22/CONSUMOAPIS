@@ -5,38 +5,14 @@ export class NavMenu extends HTMLElement{
     }
     render(){
         this.innerHTML = /* html */ `
-        <style rel="stylesheet">
-          @import "./App/Components/navMenu/menuStyle.css";
-        </style>
-          <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" data-verocultar='["countries"]'>Countries</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" data-verocultar='["preguntar"]'>preguntar</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" data-verocultar='["regions"]'>Regions</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" data-verocultar='["cities"]'>Cities</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" data-verocultar='["companies"]'>Companies</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" data-verocultar='["branches"]'>Branches</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <nav class="navbar">
+            <ul class="navbar-nav">
+              <li><a class="nav-link active" href="#" data-verocultar='["countries"]'>Países</a></li>
+              <li><a class="nav-link" href="#" data-verocultar='["regions"]'>Regiones</a></li>
+              <li><a class="nav-link" href="#" data-verocultar='["cities"]'>Ciudades</a></li>
+              <li><a class="nav-link" href="#" data-verocultar='["companies"]'>Empresas</a></li>
+              <li><a class="nav-link" href="#" data-verocultar='["branches"]'>Sucursales</a></li>
+            </ul>
           </nav>        
         `;
         this.querySelectorAll(".nav-link").forEach((val, id) => {
@@ -60,10 +36,6 @@ export class NavMenu extends HTMLElement{
                   break;
                 case 'branches':
                   mainContent.innerHTML = "<branches-component></branches-component>";
-                  break;
-                case 'preguntar':
-                  // Agrega aquí el componente que corresponda a "preguntar"
-                  mainContent.innerHTML = "<preguntar-component></preguntar-component>";
                   break;
                 default:
                   console.log("Componente no encontrado");

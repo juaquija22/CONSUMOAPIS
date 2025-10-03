@@ -1,5 +1,4 @@
-import '/App/Components/countrie/regcountrie.js';
-import '/App/Components/countrie/lstcountrie.js';
+// Los componentes se cargan directamente desde index.html
 export class countrieComponent extends HTMLElement {
   constructor() {
     super();
@@ -11,14 +10,10 @@ export class countrieComponent extends HTMLElement {
       <style rel="stylesheet">
         @import "./App/Components/countrie/countrieStyle.css";
       </style>
-      <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active mnucountrie" aria-current="page" href="#" data-verocultar='["#regcountrie",["#lstcountrie"]]'>Registrar Pais</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mnucountrie" href="#" data-verocultar='["#lstcountrie",["#regcountrie"]]'>Listado de Paises</a>
-      </li>
-    </ul>
+      <div class="tabs">
+        <button class="tab active" data-verocultar='["#regcountrie",["#lstcountrie"]]'>Registrar País</button>
+        <button class="tab" data-verocultar='["#lstcountrie",["#regcountrie"]]'>Listado de Países</button>
+      </div>
     <div class="container" id="regcountrie" style="display:block;">
         <reg-countrie></reg-countrie>
     </div>
@@ -26,7 +21,7 @@ export class countrieComponent extends HTMLElement {
         <lst-countrie></lst-countrie>
     </div>    
     `;
-    this.querySelectorAll(".mnucountrie").forEach((val, id) => {
+    this.querySelectorAll(".tab").forEach((val, id) => {
         val.addEventListener("click", (e)=>{
             let data = JSON.parse(e.target.dataset.verocultar);
             let cardVer = document.querySelector(data[0]);
